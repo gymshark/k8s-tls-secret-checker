@@ -7,7 +7,7 @@ VERSION=$(shell git describe --tags --always --long --dirty)
 
 .PHONY: clean
 
-build: windows linux darwin ## Build binaries
+build: windows linux darwin m1 ## Build binaries
 	@echo version: $(VERSION)
 
 windows: $(WINDOWS) ## Build for Windows
