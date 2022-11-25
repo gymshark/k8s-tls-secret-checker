@@ -2,6 +2,7 @@ EXECUTABLE=k8s-check-certs
 WINDOWS=./bin/$(EXECUTABLE)_windows_amd64.exe
 LINUX=./bin/$(EXECUTABLE)_linux_amd64
 DARWIN=./bin/$(EXECUTABLE)_darwin_amd64
+M1=./bin/$(EXECUTABLE)_darwin_arm64
 VERSION=$(shell git describe --tags --always --long --dirty)
 
 .PHONY: clean
@@ -23,6 +24,9 @@ $(LINUX):
 
 $(DARWIN):
 	env GOOS=darwin GOARCH=amd64 go build -i -v -o $(DARWIN) -ldflags="-s -w -X main.version=$(VERSION)"  ./cmd/k8s-check-certs/main.go
+
+$(M1):
+	env GOOS=darwin GOARCH=arm64 go build -i -v -o $(DARWIN) -ldflags="-s -w -X main.version=$(VERSION)"  ./cmd/k8s-check-certs/main.go
 
 clean: ## Remove previous build
 	rm -f $(WINDOWS) $(LINUX) $(DARWIN)
