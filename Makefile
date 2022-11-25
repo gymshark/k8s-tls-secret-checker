@@ -16,6 +16,8 @@ linux: $(LINUX) ## Build for Linux
 
 darwin: $(DARWIN) ## Build for Darwin (macOS)
 
+m1: $(M1)
+
 $(WINDOWS):
 	env GOOS=windows GOARCH=amd64 go build -i -v -o $(WINDOWS) -ldflags="-s -w -X main.version=$(VERSION)"  ./cmd/k8s-check-certs/main.go
 
@@ -29,7 +31,7 @@ $(M1):
 	env GOOS=darwin GOARCH=arm64 go build -i -v -o $(DARWIN) -ldflags="-s -w -X main.version=$(VERSION)"  ./cmd/k8s-check-certs/main.go
 
 clean: ## Remove previous build
-	rm -f $(WINDOWS) $(LINUX) $(DARWIN)
+	rm -f $(WINDOWS) $(LINUX) $(DARWIN) $(M1)
 
 help: ## Display available commands
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
