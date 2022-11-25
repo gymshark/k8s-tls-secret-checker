@@ -19,16 +19,16 @@ darwin: $(DARWIN) ## Build for Darwin (macOS)
 m1: $(M1)
 
 $(WINDOWS):
-	env GOOS=windows GOARCH=amd64 go build -i -v -o $(WINDOWS) -ldflags="-s -w -X main.version=$(VERSION)"  ./cmd/k8s-check-certs/main.go
+	env GOOS=windows GOARCH=amd64 go build -v -o $(WINDOWS) -ldflags="-s -w -X main.version=$(VERSION)"  ./cmd/k8s-check-certs/main.go
 
 $(LINUX):
-	env GOOS=linux GOARCH=amd64 go build -i -v -o $(LINUX) -ldflags="-s -w -X main.version=$(VERSION)"  ./cmd/k8s-check-certs/main.go
+	env GOOS=linux GOARCH=amd64 go build -v -o $(LINUX) -ldflags="-s -w -X main.version=$(VERSION)"  ./cmd/k8s-check-certs/main.go
 
 $(DARWIN):
-	env GOOS=darwin GOARCH=amd64 go build -i -v -o $(DARWIN) -ldflags="-s -w -X main.version=$(VERSION)"  ./cmd/k8s-check-certs/main.go
+	env GOOS=darwin GOARCH=amd64 go build -v -o $(DARWIN) -ldflags="-s -w -X main.version=$(VERSION)"  ./cmd/k8s-check-certs/main.go
 
 $(M1):
-	env GOOS=darwin GOARCH=arm64 go build -i -v -o $(DARWIN) -ldflags="-s -w -X main.version=$(VERSION)"  ./cmd/k8s-check-certs/main.go
+	env GOOS=darwin GOARCH=arm64 go build -v -o $(M1) -ldflags="-s -w -X main.version=$(VERSION)"  ./cmd/k8s-check-certs/main.go
 
 clean: ## Remove previous build
 	rm -f $(WINDOWS) $(LINUX) $(DARWIN) $(M1)
